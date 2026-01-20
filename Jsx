@@ -1,0 +1,47 @@
+"use client";
+
+import { useState } from "react";
+
+export default function FlaconenseSite() {
+  const [tab, setTab] = useState("elenco");
+
+  const elenco = [
+    { nome: "Tavares", pos: "Zagueiro", numero: 3 },
+    { nome: "Miguel", pos: "Atacante", numero: 9 },
+    { nome: "Pedro", pos: "Volante", numero: 5 },
+    { nome: "Matheus", pos: "Goleiro / Meia", numero: 1 }
+  ];
+
+  const jogos = [
+    { adversario: "Turma 703", placar: "6x1" },
+    { adversario: "Turma 801", placar: "2x1" }
+  ];
+
+  return (
+    <div style={{ background: \"black\", color: \"white\", minHeight: \"100vh\", padding: 20 }}>
+      <h1 style={{ textAlign: \"center\" }}>Flaconense FC</h1>
+
+      <div style={{ display: \"flex\", justifyContent: \"center\", gap: 10, marginBottom: 20 }}>
+        <button onClick={() => setTab(\"elenco\")}>Elenco</button>
+        <button onClick={() => setTab(\"jogos\")}>Jogos</button>
+      </div>
+
+      {tab === \"elenco\" && elenco.map((j, i) => (
+        <div key={i} style={{ border: \"1px solid white\", padding: 10, marginBottom: 10 }}>
+          <strong>{j.nome}</strong><br />
+          {j.pos} • #{j.numero}
+        </div>
+      ))}
+
+      {tab === \"jogos\" && jogos.map((j, i) => (
+        <div key={i} style={{ border: \"1px solid white\", padding: 10, marginBottom: 10 }}>
+          vs {j.adversario} — {j.placar}
+        </div>
+      ))}
+
+      <p style={{ textAlign: \"center\", opacity: 0.6, marginTop: 30 }}>
+        Flaconense FC • Preto & Branco
+      </p>
+    </div>
+  );
+}
